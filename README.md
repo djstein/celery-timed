@@ -51,8 +51,8 @@ Notice in the worker terminal the success and output of the test function
 
 Change the times the scheduled worker uses a function by changing the time variable in celery_config.
 
-# Time currently shown to print the test function every 10 seconds
+### Time currently shown to print the test function every 10 seconds
 time = 10.0
 
-# This can be changed to work at any cron time, for example, midnight:
+### This can be changed to work at any cron time, for example, midnight:
 time = crontab(hour=0, minute=0)
