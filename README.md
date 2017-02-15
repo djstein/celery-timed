@@ -19,7 +19,7 @@ virtualenv -p python3 .env
 pip install -Ur requirements.txt
 ```
 
-## Redis Installation on Mac OS X
+## Redis Installation on MacOS
 ```bash
 # Install redis
 brew install redis
@@ -28,22 +28,31 @@ brew install redis
 ## Running Project
 In three terminals have a celery working, redis server running, and activate a celery task
 
-### Terminal 1: Celery Worker
+### Terminal 1: Celery App
 ```bash
 source .env/bin/activate
-celery -A celery_config worker --loglevel=info
+celery -A celery_config beat
 ```
 ### Terminal 2: Redis Server
 ```bash
 redis-server
+
+# When finished, shut down the server
+redis-cli shutdown
 ```
 
-### Terminal 3: Celery Task
+### Terminal 3: Celery Worker
 ```bash
 source .env/bin/activate
-python
->>>from tasks import add
->>>add.delay(1,4)
+celery -A celery_config worker -B
 ```
 
-Notice in the worker terminal the success and output of the add function
+Notice in the worker terminal the success and output of the test function
+
+Change the times the scheduled worker uses a function by changing the time variable in celery_config.
+
+# Time currently shown to print the test function every 10 seconds
+time = 10.0
+
+# This can be changed to work at any cron time, for example, midnight:
+time = crontab(hour=0, minute=0)
