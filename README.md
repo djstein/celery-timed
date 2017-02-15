@@ -49,7 +49,7 @@ celery -A celery_config worker -B
 
 Notice in the worker terminal the success and output of the test function
 
-Change the times the scheduled worker uses a function by changing the time variable in celery_config.
+Change the times the scheduled worker uses a function by changing the time variable in celery_config. All times are currently using UTC!!!
 
 ### Time currently shown to print the test function every 10 seconds
 time = 10.0
